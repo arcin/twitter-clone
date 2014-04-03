@@ -1,12 +1,3 @@
-get '/' do
-  erb :index
-end
-
-post '/create' do
-  User.create(username: params[:username],password: params[:password])
-  redirect '/'
-end
-
 post '/login' do
   @valid_user = User.authenticate(params[:username], params[:password])
   redirect '/' unless @valid_user
