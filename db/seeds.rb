@@ -4,3 +4,10 @@
     password: Faker::Internet.password(10)
     )
 end
+
+50.times do
+  Tweet.create(
+    text: Faker::Lorem.characters(char_count = 100),
+    user_id: rand(1..10)
+  )
+end
