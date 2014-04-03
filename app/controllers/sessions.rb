@@ -5,6 +5,11 @@ post '/login' do
   redirect "/#{params[:username]}"
 end
 
+post '/logout' do
+  session.clear
+  redirect '/'
+end
+
 get '/:username' do
   if session[:user_id]
     @user = User.find(session[:user_id])
