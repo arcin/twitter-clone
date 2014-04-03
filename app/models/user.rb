@@ -1,3 +1,8 @@
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+ def self.authenticate(username,password)
+  @user = User.find_by_username(username)
+  @user.password == password
+
+ end
+
 end
