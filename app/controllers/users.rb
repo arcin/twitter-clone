@@ -11,3 +11,8 @@ get '/public/:user' do
   @user = User.find_by_username(params[:user])
   erb :public_profile
 end
+
+post '/public_profile' do
+  @users = params[:username]
+  redirect "/public/#{@users}"
+end
