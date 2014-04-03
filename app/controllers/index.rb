@@ -8,10 +8,10 @@ post '/create' do
 end
 
 post '/login' do
- @valid_user = User.authenticate(params[:username], params[:password])
- redirect '/' unless @valid_user
- session[:user_id] = @valid_user.id
-  erb :index
+  @valid_user = User.authenticate(params[:username], params[:password])
+  redirect '/' unless @valid_user
+  session[:user_id] = @valid_user.id
+  redirect "/#{params[:username]}"
 end
 
 get '/:username' do
