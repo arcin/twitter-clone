@@ -1,3 +1,8 @@
 <div class="container">
   <h1>Hello <%=@user.username%></h1>
+
+  <form action="/tweet" method="post">
+    <input type="text" maxlength="140" name="text">
+    <button type="submit">Tweet</button>
+  </form>
 </div>
