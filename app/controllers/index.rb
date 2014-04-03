@@ -4,13 +4,21 @@ end
 
 post '/create' do
   User.create(username: params[:username],password: params[:password])
-  erb :index
+  redirect '/'
 end
 
 post '/login' do
- @valid_user = User.authenticate(username: params[:username],password: params[:password])
+ @valid_user = User.authenticate(params[:username], params[:password])
  redirect '/' unless @valid_user
  session[:user_id] = @valid_user.id
   erb :index
 end
 
+get '/:username' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :user_page
+  else
+    redirect '/'
+  end
+end
