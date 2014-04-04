@@ -18,10 +18,17 @@
   <% @tweets.each do |tweet| %>
     <p> At <%= tweet[0] %> <%= tweet[1] %> Says <%= tweet[2] %></p>
   <% end %>
-  <h4>Followers list</h4>
+  <h4>Who Follows You: </h4>
   <ol>
   <% @user.followers.each do |follower| %>
     <li><%= User.find(follower.follower_id).username %></li>
+  <% end%>
+  </ol>
+
+  <h4>Who You Follow: </h4>
+  <ol>
+  <% @people_being_followed.each do |followee| %>
+    <li><%= User.find(followee).username %></li>
   <% end%>
   </ol>
 
