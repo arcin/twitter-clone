@@ -3,7 +3,7 @@ get '/' do
 end
 
 post '/create' do
-  User.create(username: params[:username],password: params[:password])
+  User.create(username: params[:username],email: params[:email],password: params[:password])
   redirect '/'
 end
 

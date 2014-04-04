@@ -1,5 +1,8 @@
 <div class="container">
-  <h1 class="title">Hello <%=@user.username%></h1>
+  <div class = "header">
+  <img src = "<%= @user.gravatar_url %>"/>
+  <h1 class="title"> <%=@user.username%></h1>
+  </div>
 
   <form action="/tweet" method="post">
     <input type="text" maxlength="140" name="text" class="form-control">
@@ -41,14 +44,17 @@
     <div class="feed">
       <% @tweets.each do |tweet| %>
         <div class="tweet">
-          <div class="handle"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
-          <div class="tweet-body"><%= User.find(tweet.user_id).username %></div>
-          <div>At <%= User.find(tweet.user_id).username %></div>
+          <div class="tweet-img" ><img class="feed-img" src = "<%= @user.gravatar_url %>"/></div>
+          <div class="handle feed-align"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
+          <div class="tweet-body feed-align"><%= User.find(tweet.user_id).username %></div>
+          <div class="feed-align">At <%= User.find(tweet.user_id).username %></div>
           <a href="/retweet/<%= User.find(tweet.user_id).username %>">Retweet</a>
+
         </div>
       <% end %>
     </div>
   <%end%>
+
   <form action="/logout" method="post">
     <button type="submit" class="btn btn-danger">Log Out</button>
   </form>
