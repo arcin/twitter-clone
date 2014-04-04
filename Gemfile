@@ -7,7 +7,7 @@ gem 'pg'
 # Sinatra driver
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'gravatarify', '~> 3.0.0'
+
 # Use Thin for our web server
 gem 'thin'
 
