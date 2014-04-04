@@ -1,6 +1,8 @@
 <div class="container">
-  <h1 class="title">Hello <%=@user.username%></h1>
+  <div class = "header">
   <img src = "<%= @user.gravatar_url %>"/>
+  <h1 class="title"> <%=@user.username%></h1>
+  </div>
 
   <form action="/tweet" method="post">
     <input type="text" maxlength="140" name="text" class="form-control">
