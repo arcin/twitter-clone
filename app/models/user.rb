@@ -1,4 +1,7 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
+
   has_many :followers
   has_many :tweets
   validates :username, uniqueness: true
@@ -8,6 +11,17 @@ class User < ActiveRecord::Base
               :filetype => :gif,
               :size => 120
   is_gravtastic!
+
+  include BCrypt
+
+  def password
+    @password ||= Password.new(password_hash)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 
   def self.authenticate(username, password)
     @user = User.find_by_username(username)
