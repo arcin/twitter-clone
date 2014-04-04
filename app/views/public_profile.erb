@@ -3,7 +3,7 @@
   <form action="/follow/<%= @user.username %>" method="post">
     <button type="submit" class="btn btn-primary">Follow</button>
   </form>
-  <a href="http://127.0.0.1:9393"><button type="submit" class="btn btn-default">Home</button></a>
+  <a href="/"><button type="submit" class="btn btn-default">Home</button></a>
   <div class="feed">
     <% @user.tweets.each do |t| %>
       <div class="tweet">
