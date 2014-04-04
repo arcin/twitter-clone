@@ -1,16 +1,17 @@
 <div class="container">
   <h1>Welcome to Twitter</h1>
   <h3> Please Create an Account </h3>
-    <form method='Post' action='/create'>
-      Username<input type="text" name="username" />
-      Password<input type="text" name="password" />
-      <input type="submit" value="Create"/>
+    <form method='Post' action='/create' >
+      Username<input type="text" name="username" class="form-control"/>
+      Password<input type="password" name="password" class="form-control" />
+    
+      <button type="submit" class="btn btn-success">Sign Up</button>
      </form>
 
   <h3> Already have an account? Please Login. </h3>
     <form method='post' action='/login'>
-      Username<input type="text" name="username" />
-      Password<input type="text" name="password" />
-      <input type="submit" value="Login" />
-
+      Username<input type="text" name="username" class="form-control"/>
+      Password<input type="password" name="password" class="form-control"/>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 </div>

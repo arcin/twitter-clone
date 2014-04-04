@@ -1,37 +1,55 @@
-
-  <h1>Hello <%=@user.username%></h1>
+<div class="container">
+  <h1 class="title">Hello <%=@user.username%></h1>
 
   <form action="/tweet" method="post">
-    <input type="text" maxlength="140" name="text">
-    <button type="submit">Tweet</button>
+    <input type="text" maxlength="140" name="text" class="form-control">
+    <button type="submit" class="btn btn-success">Tweet</button>
   </form>
 
-  <form action="/logout" method="post">
-    <button type="submit">Log Out</button>
+
+
+  <h3 class="title">See someone else's tweets</h3>
+  <form action="/public_profile" method="post">
+    <input type="text" name="username" class="form-control">
+    <button type="submit" class="btn btn-success">Search</button>
   </form>
 
-  <h4> See someone else's tweets </h4>
-<form action="/public_profile" method="post">
-  <input type="text" name="username">
-  <input type="submit" >
-</form>
-  <% @tweets.each do |tweet| %>
-    <p> At <%= tweet[0] %> <%= tweet[1] %> Says <%= tweet[2] %></p>
+  <% if @user.followers.length > 0 %>
+    <div class="followers">
+      <h3 class="title">Who Follows You: </h3>
+      <ol>
+      <% @user.followers.each do |follower| %>
+        <li><%= User.find(follower.follower_id).username %></li>
+      <% end%>
+      </ol>
+    </div>
   <% end %>
-  <h4>Who Follows You: </h4>
-  <ol>
-  <% @user.followers.each do |follower| %>
-    <li><%= User.find(follower.follower_id).username %></li>
-  <% end%>
-  </ol>
 
-  <h4>Who You Follow: </h4>
-  <ol>
-  <% @people_being_followed.each do |followee| %>
-    <li><%= User.find(followee).username %></li>
-  <% end%>
-  </ol>
+  <% if @people_being_followed.length > 0 %>
+    <div class="following">
+      <h3 class="title">Who You Follow: </h3>
+      <ol>
+      <% @people_being_followed.each do |followee| %>
+        <li><%= User.find(followee).username %></li>
+      <% end%>
+      </ol>
+    </div>
+  <% end %>
+  
+  <% if @tweets.length > 0 %>
+    <h2>Feed:</h2>
+    <div class="feed">
+      <% @tweets.each do |tweet| %>
+        <div class="tweet">
+          <div class="handle"><a href="/<%= tweet[1] %>">@<%= tweet[1] %>:</a></div>
+          <div class="tweet-body"><%= tweet[2] %></div>
+          <div>At <%= tweet[0].strftime("%H hours and %M minutes ago") %></div>
+        </div>
+      <% end %>
+    </div>
+  <%end%>
+  <form action="/logout" method="post">
+    <button type="submit" class="btn btn-danger">Log Out</button>
+  </form>
 
-
-
-
+</div>
