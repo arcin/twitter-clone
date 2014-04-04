@@ -12,6 +12,8 @@ end
 
 get '/:username' do
   @user = User.find_by_username(params[:username])
+  @people_being_followed = @user.people_user_is_following
+  @tweets = find_tweets_based_off_users(@people_being_followed)
   if session[:user_id] == @user.id
     @user = User.find(session[:user_id])
     erb :user_page

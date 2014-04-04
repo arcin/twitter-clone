@@ -1,4 +1,4 @@
-<div class="container">
+
   <h1>Hello <%=@user.username%></h1>
 
   <form action="/tweet" method="post">
@@ -15,13 +15,16 @@
   <input type="text" name="username">
   <input type="submit" >
 </form>
-
+  <% @tweets.each do |tweet| %>
+    <p> At <%= tweet[0] %> <%= tweet[1] %> Says <%= tweet[2] %></p>
+  <% end %>
   <h4>Followers list</h4>
   <ol>
   <% @user.followers.each do |follower| %>
     <li><%= User.find(follower.follower_id).username %></li>
   <% end%>
   </ol>
-</div>
+
+
 
 
