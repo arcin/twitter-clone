@@ -1,4 +1,7 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
+
   has_many :followers
   has_many :tweets
   validates :username, uniqueness: true
@@ -9,11 +12,21 @@ class User < ActiveRecord::Base
               :size => 120
   is_gravtastic!
 
+  include BCrypt
+
+  def password
+    @password ||= Password.new(password_hash)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
+
   def self.authenticate(username, password)
     @user = User.find_by_username(username)
     @user.password == password ? @user : nil
   end
-
 
   def people_user_is_following
     @people = []
@@ -23,5 +36,15 @@ class User < ActiveRecord::Base
       end
     end
       @people
+  end
+
+  def is_following?(person_of_interest)
+    relationship = Follower.where("user_id = ? AND follower_id = ?", person_of_interest.id, self.id)
+    if relationship == []
+      false
+    else
+      true
+    end
+
   end
 end

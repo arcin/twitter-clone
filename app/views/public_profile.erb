@@ -4,10 +4,15 @@
   <h1 class="title"> <%=@user.username%></h1>
   </div>
 
-  <form action="/follow/<%= @user.username %>" method="post">
-    <button type="submit" class="btn btn-primary">Follow</button>
-  </form>
-  <a href="/<%=@current_user.username%>"><button type="submit" class="btn btn-default">Home</button></a>
+  <% if session[:user_id] != @user.id && (User.find(session[:user_id]).is_following?(@user) == false) %>
+    <form action="/follow/<%= @user.username %>" method="post">
+      <button type="submit" class="btn btn-primary">Follow</button>
+    </form>
+  <% end %>
+    <a href="/<%=@current_user.username%>"><button type="submit" class="btn btn-default">Home</button></a>
+
+
+
   <div class="feed">
     <% @user.tweets.each do |t| %>
       <div class="tweet">
