@@ -11,10 +11,18 @@ post '/logout' do
 end
 
 get '/:username' do
+  @retweets = {}
   @user = User.find_by_username(params[:username])
 
-  @people_being_followed = @user.people_user_is_following
-  @tweets = find_tweets_based_off_users(@people_being_followed)
+  @people_you_follow = @user.people_user_is_following
+  @follower_tweets = find_tweets_based_off_users(@people_you_follow)
+
+
+  @people_you_follow.each do |followee_id|
+   @retweets[User.find(followee_id)] = Retweet.where("retweeter_id = ?", followee_id).map! {|retweet| Tweet.find(retweet.tweet)}
+  end
+
+
   if session[:user_id] == @user.id
     erb :user_page
   else

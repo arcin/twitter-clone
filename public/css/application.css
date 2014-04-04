@@ -24,24 +24,26 @@ th {
   text-align: left;
 }
 input, textarea, select, button {
-
   padding: 5px;
   margin: 5px 5px;
 }
 .followers, .following {
   width: 48%;
   display: inline-block;
+  margin-top: 5%;
 }
 .title {
   font-family: "Abel", Helvetica, Arial, sans-serif;
   display: inline;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Abel", Helvetica, Arial, sans-serif;
   font-weight: 900;
   color: #444;
+
 }
 
 .feed {
@@ -61,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .handle {
-  font-size: 1.15em;
   color: blue;
 }
 
