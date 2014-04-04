@@ -35,15 +35,16 @@
       </ol>
     </div>
   <% end %>
-  
+
   <% if @tweets.length > 0 %>
     <h2>Feed:</h2>
     <div class="feed">
       <% @tweets.each do |tweet| %>
         <div class="tweet">
-          <div class="handle"><a href="/<%= tweet[1] %>">@<%= tweet[1] %>:</a></div>
-          <div class="tweet-body"><%= tweet[2] %></div>
-          <div>At <%= tweet[0].strftime("%H hours and %M minutes ago") %></div>
+          <div class="handle"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
+          <div class="tweet-body"><%= User.find(tweet.user_id).username %></div>
+          <div>At <%= User.find(tweet.user_id).username %></div>
+          <a href="/retweet/<%= User.find(tweet.user_id).username %>">Retweet</a>
         </div>
       <% end %>
     </div>
