@@ -12,7 +12,7 @@ end
 
 get '/:username' do
   @user = User.find_by_username(params[:username])
-  @current_user = User.find(session[:user_id])
+
   @people_being_followed = @user.people_user_is_following
   @tweets = find_tweets_based_off_users(@people_being_followed)
   if session[:user_id] == @user.id

@@ -9,6 +9,7 @@ end
 
 get '/public/:user' do
   @user = User.find_by_username(params[:user])
+  @current_user = User.find(session[:user_id])
   erb :public_profile
 end
 
