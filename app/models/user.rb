@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
     @user.password == password ? @user : nil
   end
 
-
   def people_user_is_following
     @people = []
     Follower.all.each do |row|
@@ -37,5 +36,15 @@ class User < ActiveRecord::Base
       end
     end
       @people
+  end
+
+  def is_following?(person_of_interest)
+    relationship = Follower.where("user_id = ? AND follower_id = ?", person_of_interest.id, self.id)
+    if relationship == []
+      false
+    else
+      true
+    end
+
   end
 end
