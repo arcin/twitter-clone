@@ -1,9 +1,14 @@
  <div class="container">
   <h3> Welcome to the Public Profile of <%= @user.username%></h3>
-
-  <% @user.tweets.each do |t| %>
-
-    <p>&raquo; <%= t.text %> </p>
-  <% end %>
+  <div class="feed">
+    <% @user.tweets.each do |t| %>
+      <div class="tweet">
+        <div class="tweet-body"><%= t.text %></div>
+      </div>
+    <% end %>
+  </div>
+  <form action="/follow/<%= @user.username %>" method="post">
+    <button type="submit">Follow</button>
+  </form>
 
  </div>
