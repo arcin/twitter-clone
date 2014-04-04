@@ -1,4 +1,4 @@
-require 'bcrypt'
+# require 'bcrypt'
 
 class User < ActiveRecord::Base
 
@@ -12,16 +12,16 @@ class User < ActiveRecord::Base
               :size => 120
   is_gravtastic!
 
-  include BCrypt
+  # include BCrypt
 
-  def password
-    @password ||= Password.new(password_hash)
-  end
+  # def password
+  #   @password ||= Password.new(password_hash)
+  # end
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
-  end
+  # def password=(new_password)
+  #   @password = Password.create(new_password)
+  #   self.password_hash = @password
+  # end
 
   def self.authenticate(username, password)
     @user = User.find_by_username(username)

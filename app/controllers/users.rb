@@ -3,9 +3,8 @@ get '/' do
 end
 
 post '/create' do
-  @user = User.new(username: params[:username],email: params[:email])
-  @user.password = params[:password]
-  @user.save!
+  
+  User.create(username: params[:username],email: params[:email], password: params[:password])
   redirect '/'
 end
 
