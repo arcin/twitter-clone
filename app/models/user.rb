@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   has_many :tweets
   validates :username, uniqueness: true
 
+  include Gravtastic
+  gravtastic  :secure => true,
+              :filetype => :gif,
+              :size => 120
+  is_gravtastic!
+
   def self.authenticate(username, password)
     @user = User.find_by_username(username)
     @user.password == password ? @user : nil

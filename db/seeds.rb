@@ -1,7 +1,8 @@
 10.times do
   User.create(
     username: Faker::Internet.user_name,
-    password: Faker::Internet.password(10)
+    password: Faker::Internet.password(10),
+    email: "jb681831@gmail.com"
     )
 end
 
