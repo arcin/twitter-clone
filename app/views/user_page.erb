@@ -15,7 +15,9 @@
   <input type="text" name="username">
   <input type="submit" >
 </form>
-
+  <% @tweets.each do |tweet| %>
+    <p> <%= tweet %> </p>
+  <% end %>
   <h4>Followers list</h4>
   <ol>
   <% @user.followers.each do |follower| %>
@@ -23,5 +25,6 @@
   <% end%>
   </ol>
 </div>
+
 
 
