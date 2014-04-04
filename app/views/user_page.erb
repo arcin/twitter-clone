@@ -42,9 +42,10 @@
     <div class="feed">
       <% @tweets.each do |tweet| %>
         <div class="tweet">
-          <div class="handle"><a href="/<%= tweet[1] %>">@<%= tweet[1] %>:</a></div>
-          <div class="tweet-body"><%= tweet[2] %></div>
-          <div>At <%= tweet[0].strftime("%H hours and %M minutes ago") %></div>
+          <div class="tweet-img" ><img class="feed-img" src = "<%= @user.gravatar_url %>"/></div>
+          <div class="handle feed-align"><a href="/<%= tweet[1] %>">@<%= tweet[1] %>:</a></div>
+          <div class="tweet-body feed-align"><%= tweet[2] %></div>
+          <div class="feed-align">At <%= tweet[0].strftime("%H hours and %M minutes ago") %></div>
         </div>
       <% end %>
     </div>
