@@ -48,7 +48,7 @@
           <div class="handle feed-align"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
           <div class="tweet-body feed-align"><%= User.find(tweet.user_id).username %></div>
           <div class="feed-align">At <%= User.find(tweet.user_id).username %></div>
-          <a href="/retweet/<%= User.find(tweet.user_id).username %>">Retweet</a>
+          <a href="/retweet/<%= tweet.id %>">Retweet</a>
 
         </div>
       <% end %>
