@@ -46,8 +46,8 @@
         <div class="tweet">
           <div class="tweet-img" ><a href="/<%= User.find(tweet.user_id).username %>"><img class="feed-img" src = "<%= User.find(tweet.user_id).gravatar_url %>"/></a></div>
           <div class="handle feed-align"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
-          <div class="tweet-body feed-align"><%= User.find(tweet.user_id).username %></div>
-          <div class="feed-align">At <%= User.find(tweet.user_id).username %></div>
+          <div class="tweet-body feed-align"><%= tweet.text %></div>
+          <div class="feed-align">At <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></div>
           <a href="/retweet/<%= tweet.id %>">Retweet</a>
         </div>
       <% end %>
