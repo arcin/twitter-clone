@@ -6,7 +6,8 @@ post '/tweet' do
   redirect "/public/#{@user.username}"
 end
 
-
+# this should probably be a post route, as its handling DB interaction.
+# that said, as is its fine. REST is only a convention, nothing more.
 get '/retweet/:tweet_id' do
   @tweet = Tweet.find(params[:tweet_id])
   # @original_tweeter = User.find(@tweet.user_id)

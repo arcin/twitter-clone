@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
 
   def people_user_is_following
     @people = []
+    # you're bringing back the entire followers table and filtering it in ruby.
+    # that's bad! you should let active record handle as much fo this as possible.
+    # user.followers is built in, and should get you the exact same structure.
     Follower.all.each do |row|
       if row.follower_id.to_i == self.id.to_i
         @people << row.user_id.to_i
@@ -39,6 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def is_following?(person_of_interest)
+    # where statements are considered ugly by some. I'd suggest attempting to do
+    # this using more of the built in ActiveRecord query interface, something like:
+    #
+    # self.followers.include?(person_of_interest)
+    #
     relationship = Follower.where("user_id = ? AND follower_id = ?", person_of_interest.id, self.id)
     if relationship == []
       false

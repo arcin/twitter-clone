@@ -1,4 +1,6 @@
 helpers do
+  # this should be handled at the model level. It also seems duplicative of
+  # user.tweets
   def find_tweets_based_off_users(users)
     tweet_collection = []
     users.each do |user_id|
