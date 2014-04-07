@@ -43,6 +43,9 @@
     <h2>Feed:</h2>
     <div class="feed">
       <% @follower_tweets.each do |tweet| %>
+      <!-- tweets are complex enough that the syould probably be handled in a partial -->
+      <!-- it would totally dry up your code! -->
+
         <div class="tweet">
           <div class="tweet-img" ><a href="/<%= User.find(tweet.user_id).username %>"><img class="feed-img" src = "<%= User.find(tweet.user_id).gravatar_url %>"/></a></div>
           <div class="handle feed-align"><a href="/<%= User.find(tweet.user_id).username %>">@<%= User.find(tweet.user_id).username %>:</a></div>
@@ -59,6 +62,7 @@
             <div class="feed-align">Retweet by <a href="/<%= user.username %>">@<%= user.username %></a></div>
 
             <div class="tweet-body feed-align"><%= tweet.text %></div>
+            <!-- this should be a method on a tweet model, not a random piece of logic floating in your view -->
             <div class="feed-align">At <%= tweet.created_at.strftime("%H hours and %M minutes ago") %></div>
           </div>
         <% end %>

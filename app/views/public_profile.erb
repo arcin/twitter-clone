@@ -4,6 +4,9 @@
   <h1 class="title"> <%=@user.username%></h1>
   </div>
 
+  <!-- this is a ton of logic in your view! you should try to handle as much of this -->
+  <!-- as you can in your controller.  -->
+
   <% if session[:user_id] != @user.id && (User.find(session[:user_id]).is_following?(@user) == false) %>
     <form action="/follow/<%= @user.username %>" method="post">
       <button type="submit" class="btn btn-primary">Follow</button>
@@ -14,6 +17,7 @@
 
 
   <div class="feed">
+    <!-- this is a totally fine amount of logic in your view. iterators and getters are kosher -->
     <% @user.tweets.each do |t| %>
       <div class="tweet">
         <div class="tweet-body"><%= t.text %></div>
